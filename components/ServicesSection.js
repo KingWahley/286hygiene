@@ -3,45 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const services = [
-  {
-    title: "Residential Cleaning",
-    text: "Tailored deep cleaning solutions for your private sanctuary.",
-    image: "/images/service 1.png",
-    alt: "Residential cleaning service interior"
-  },
-  {
-    title: "Commercial Cleaning",
-    text: "Maintaining peak productivity through pristine workspaces.",
-    image: "/images/service 2.png",
-    alt: "Commercial cleaning service facility"
-  },
-  {
-    title: "Post Construction Cleaning",
-    text: "Specialized heavy-duty sanitation for complex facilities.",
-    image: "/images/service 3.png",
-    alt: "Post construction cleaning facility"
-  },
-  {
-    title: "Deep Cleaning",
-    text: "Restoring shared work environments with detailed, routine care.",
-    image: "/images/service 2.png",
-    alt: "Office cleaning service facility"
-  },
-  {
-    title: "Matterass Cleaning",
-    text: "Fresh, welcoming interiors prepared before you settle in.",
-    image: "/images/service 1.png",
-    alt: "Move in cleaning residential interior"
-  },
-  {
-    title: "Pressure Washing",
-    text: "Powerful cleaning support for demanding technical environments.",
-    image: "/images/service 3.png",
-    alt: "Industrial sanitization facility"
-  }
-];
+import { services } from "@/components/servicesData";
 
 function ServiceCard({ service, isFeatured }) {
   return (
@@ -82,11 +44,12 @@ function ServiceCard({ service, isFeatured }) {
 
 export default function ServicesSection() {
   const [startIndex, setStartIndex] = useState(0);
-  const maxStartIndex = Math.max(0, services.length - 3);
+  const featuredServices = services.slice(0, 6);
+  const maxStartIndex = Math.max(0, featuredServices.length - 3);
 
   const visibleServices = useMemo(
-    () => services.slice(startIndex, startIndex + 3),
-    [startIndex]
+    () => featuredServices.slice(startIndex, startIndex + 3),
+    [featuredServices, startIndex]
   );
 
   function goPrevious() {
