@@ -2,22 +2,23 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const services = [
   {
-    title: "Residential",
+    title: "Residential Cleaning",
     text: "Tailored deep cleaning solutions for your private sanctuary.",
     image: "/images/service 1.png",
     alt: "Residential cleaning service interior"
   },
   {
-    title: "Commercial",
+    title: "Commercial Cleaning",
     text: "Maintaining peak productivity through pristine workspaces.",
     image: "/images/service 2.png",
     alt: "Commercial cleaning service facility"
   },
   {
-    title: "Post Construction",
+    title: "Post Construction Cleaning",
     text: "Specialized heavy-duty sanitation for complex facilities.",
     image: "/images/service 3.png",
     alt: "Post construction cleaning facility"
@@ -71,7 +72,7 @@ function ServiceCard({ service, isFeatured }) {
         <h3 className="text-30px font-bold leading-tight text-[#18253a]">
           {service.title}
         </h3>
-        <p className="mt-4 max-w-[18rem] text-[1.05rem] leading-8 text-[#8c99a5]">
+        <p className="mt-4 max-w-[18rem] text-[1.05rem] leading-6 text-[#8c99a5]">
           {service.text}
         </p>
       </div>
@@ -118,18 +119,18 @@ export default function ServicesSection() {
             type="button"
             onClick={goPrevious}
             aria-label="Previous services"
-            className="absolute left-[-1.5rem] top-1/2 z-20 hidden h-13 w-13 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/85 text-2xl text-[#2fb4da] shadow-[0_12px_24px_rgba(47,180,218,0.16)] transition hover:bg-white xl:flex"
+            className="absolute left-[-1.5rem] top-1/2 z-20 hidden h-13 w-13 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/85 text-[#2fb4da] shadow-[0_12px_24px_rgba(47,180,218,0.16)] transition hover:bg-white xl:flex"
           >
-            ←
+            <ChevronLeft className="h-6 w-6" strokeWidth={2.4} aria-hidden="true" />
           </button>
 
           <button
             type="button"
             onClick={goNext}
             aria-label="Next services"
-            className="absolute right-[-1.5rem] top-1/2 z-20 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-[#2fb4da] text-3xl text-white shadow-[0_16px_28px_rgba(47,180,218,0.32)] transition hover:bg-[#1ea6cd] xl:flex"
+            className="absolute right-[-1.5rem] top-1/2 z-20 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-[#2fb4da] text-white shadow-[0_16px_28px_rgba(47,180,218,0.32)] transition hover:bg-[#1ea6cd] xl:flex"
           >
-            →
+            <ChevronRight className="h-7 w-7" strokeWidth={2.4} aria-hidden="true" />
           </button>
 
           <div className="overflow-hidden pt-4 pb-2 lg:pt-8">
@@ -150,17 +151,17 @@ export default function ServicesSection() {
             type="button"
             onClick={goPrevious}
             aria-label="Previous services"
-            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/70 bg-white/85 text-2xl text-[#2fb4da] shadow-[0_10px_20px_rgba(47,180,218,0.14)]"
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/70 bg-white/85 text-[#2fb4da] shadow-[0_10px_20px_rgba(47,180,218,0.14)]"
           >
-            ←
+            <ChevronLeft className="h-6 w-6" strokeWidth={2.4} aria-hidden="true" />
           </button>
           <button
             type="button"
             onClick={goNext}
             aria-label="Next services"
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2fb4da] text-2xl text-white shadow-[0_14px_26px_rgba(47,180,218,0.28)]"
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2fb4da] text-white shadow-[0_14px_26px_rgba(47,180,218,0.28)]"
           >
-            →
+            <ChevronRight className="h-6 w-6" strokeWidth={2.4} aria-hidden="true" />
           </button>
         </div>
       </div>

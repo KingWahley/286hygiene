@@ -25,7 +25,7 @@ export default function Testimonials() {
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center text-4xl font-extrabold text-[#17222b] sm:text-5xl">
-          What Our Clients Say
+          WHAT OUR CLIENTS SAY
         </h2>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">

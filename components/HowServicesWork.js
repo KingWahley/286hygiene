@@ -2,38 +2,39 @@ const steps = [
   {
     number: "01",
     title: "Request A Quote",
-    text: "Tell us about your space and cleaning needs so we can prepare the right plan."
+    text: "CONTACT US VIA WEB OR PHONE FOR YOUR NEEDS",
   },
   {
     number: "02",
     title: "Schedule Cleaning",
-    text: "Choose a date and time that works for your home, office, or facility."
+    text: "PICK A CONVENIENT DATE AND TIME FOR THE VISIT ",
   },
   {
     number: "03",
     title: "Professional Cleaning",
-    text: "Our experienced team arrives equipped and ready to deliver excellent results."
+    text: "OUR PROFESSIONAL TEAM ARRIVES AND WORKS MAGIC",
   },
   {
     number: "04",
     title: "Enjoy A Sparkling Space",
-    text: "Step into a fresh, hygienic environment maintained to a high standard."
-  }
+    text: "BREATHE EASY IN YOUR SANITIZED SPARKLING SPACE",
+  },
 ];
 
 export default function HowServicesWork() {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl rounded-[2.5rem] bg-[linear-gradient(180deg,_rgba(255,255,255,0.62)_0%,_rgba(245,253,248,0.64)_100%)] px-6 py-16 shadow-[0_25px_55px_rgba(64,129,147,0.08)] sm:px-10 lg:px-12">
+    <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl rounded-[2.5rem] px-6 py-16 sm:px-10 lg:px-12">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#7da39d]">
+          <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#0E6A4B]">
             The roadmap
           </p>
           <h2 className="mt-4 text-4xl font-black uppercase text-[#17222b] sm:text-5xl">
             How our services work
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#6e848d]">
-            One smooth process from inquiry to delivery, built to keep your experience easy and reliable.
+            Designed for modern busy lives. We handle the mess, you enjoy the
+            magic.
           </p>
         </div>
 
@@ -41,15 +42,19 @@ export default function HowServicesWork() {
           {steps.map((step, index) => (
             <div key={step.number} className="relative text-center">
               {index < steps.length - 1 ? (
-                <div className="absolute left-[58%] top-7 hidden h-px w-[88%] border-t border-dashed border-[#b6d3c7] lg:block" />
+                <div className="absolute left-1/2 top-14 hidden h-px w-full -translate-y-1/2 border-t border-dashed border-[#0E6A4B] lg:block" />
               ) : null}
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-2xl font-extrabold text-[#0b8768] shadow-[0_12px_28px_rgba(95,155,135,0.16)]">
-                {step.number}
+              <div className="relative z-10 mx-auto flex h-28 w-28 items-center justify-center rounded-[2rem] bg-[rgba(226,242,237,0.95)] p-3 shadow-[0_18px_40px_rgba(163,211,196,0.42)]">
+                <div className="flex h-full w-full items-center justify-center rounded-[1.65rem] bg-white text-[2rem] font-black leading-none text-[#0E7A58]">
+                  {step.number}
+                </div>
               </div>
               <h3 className="mt-7 text-lg font-extrabold uppercase text-[#17222b]">
                 {step.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-[#728891]">{step.text}</p>
+              <p className="mt-3 text-sm leading-6 text-[#728891]">
+                {step.text}
+              </p>
             </div>
           ))}
         </div>
@@ -57,4 +62,3 @@ export default function HowServicesWork() {
     </section>
   );
 }
-

@@ -25,10 +25,10 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 rounded-full bg-[#27acd0] px-7 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(39,172,208,0.35)] transition hover:bg-[#1499bc]"
+              className="inline-flex items-center gap-3 rounded-full bg-[#27acd0] px-7 py-4 text-sm font-semibold !text-white shadow-[0_14px_30px_rgba(39,172,208,0.35)] transition hover:bg-[#1499bc]"
             >
               Book Now
-              <span className="text-base">→</span>
+              <span className="text-base !text-white">→</span>
             </a>
           </div>
 
