@@ -32,14 +32,14 @@ export const services = [
     text: "Refresh sofas, fabric seats, and soft furnishings with careful stain treatment.",
     image: "/images/service 2.png",
     alt: "Upholstery cleaning equipment in use",
-    href: "#contact"
+    href: "/services/upholstery-cleaning"
   },
   {
     title: "Rug & Carpet Cleaning",
     text: "Specialized extraction and odor removal for rugs, carpets, and soft flooring.",
     image: "/images/service 3.png",
     alt: "Carpet cleaning appliance on a soft floor",
-    href: "#contact"
+    href: "/services/rug-carpet-cleaning"
   },
   {
     title: "Mattress Cleaning",

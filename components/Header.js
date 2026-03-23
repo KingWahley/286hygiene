@@ -5,7 +5,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "#contact" }
+  { label: "Contact", href: "/contact" }
 ];
 
 export default function Header() {
@@ -39,7 +39,7 @@ export default function Header() {
         </nav>
 
         <Link
-          href="#contact"
+          href="/contact"
           className="rounded-full bg-[#0b8768] px-5 py-3 text-sm font-semibold !text-white shadow-[0_14px_28px_rgba(11,135,104,0.28)] transition hover:bg-[#0a7a5f]"
         >
           Get Started
