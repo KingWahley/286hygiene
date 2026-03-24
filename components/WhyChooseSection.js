@@ -46,8 +46,7 @@ export default function WhyChooseSection() {
     <section className="relative overflow-hidden bg-[#edf8f8] px-4 pt-24 pb-18 text-white sm:px-6 lg:px-8">
       <div className="absolute inset-x-0 top-0 h-24 bg-[#edf8f8]" />
       <div
-        className="absolute inset-x-0 bottom-0 top-10 bg-[linear-gradient(180deg,_#35a8ca_0%,_#2db2da_100%)] shadow-[inset_0_18px_30px_rgba(255,255,255,0.08)]"
-        style={{ clipPath: "polygon(0 0, 100% 9%, 100% 100%, 0 100%)" }}
+        className="absolute inset-x-0 bottom-0 top-10 bg-[linear-gradient(180deg,_#35a8ca_0%,_#2db2da_100%)] shadow-[inset_0_18px_30px_rgba(255,255,255,0.08)] [clip-path:none] lg:[clip-path:polygon(0_0,100%_9%,100%_100%,0_100%)]"
       />
       <div className="absolute inset-x-0 bottom-0 top-10 bg-[radial-gradient(circle_at_18%_46%,_rgba(255,255,255,0.14),_transparent_28%),radial-gradient(circle_at_68%_70%,_rgba(255,255,255,0.10),_transparent_24%),radial-gradient(circle_at_50%_100%,_rgba(255,255,255,0.08),_transparent_34%)]" />
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.92fr] lg:items-center">

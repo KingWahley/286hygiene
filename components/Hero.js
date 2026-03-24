@@ -9,6 +9,11 @@ const stats = [
 export default function Hero() {
   return (
     <section className="relative overflow-hidden px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-18 lg:hidden"
+        style={{ backgroundImage: "url('/images/team.png')" }}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(244,251,251,0.9)_0%,_rgba(239,249,247,0.88)_48%,_rgba(245,251,247,0.92)_100%)] lg:hidden" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(97,210,233,0.23),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(214,245,222,0.9),_transparent_28%),linear-gradient(180deg,_#effbff_0%,_#eaf8f6_100%)]" />
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <div className="max-w-xl pt-4 lg:pt-10">
@@ -49,7 +54,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[30rem]">
+        <div className="relative mx-auto hidden w-full max-w-[30rem] lg:block">
           <div className="absolute -bottom-8 -right-4 h-24 w-24 rounded-full bg-[#f6d8d5]" />
           <div className="absolute -left-8 top-6 h-32 w-32 rounded-full bg-[#dff6fb]/80 blur-xl" />
 

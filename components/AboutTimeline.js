@@ -4,7 +4,7 @@ import { Eye, Sparkles, Target } from "lucide-react";
 const timelineItems = [
   {
     eyebrow: "Our story",
-    title: "Company Introduction",
+    title: "WHO WE ARE",
     text: "286 Hygiene is a professional cleaning and hygiene service company committed to creating clean, safe, and healthy environment. We provide cleaning services for residential homes, offices, commercial facilities, and construction sites. Our team is trained to deliver efficient, detailed cleaning using modern equipment and safe hygiene practices.",
     image: "/images/team.png",
     alt: "286 Hygiene team members holding cleaning supplies",
@@ -13,7 +13,7 @@ const timelineItems = [
   },
   {
     eyebrow: "Driving purpose",
-    title: "Our Mission",
+    title: "OUR MISSION",
     text: "To provide reliable, professional cleaning and hygiene services that improve health, safety, and comfort for our clients.",
     image: "/images/service 1.png",
     alt: "Professional cleaners smiling with cleaning tools",
@@ -22,7 +22,7 @@ const timelineItems = [
   },
   {
     eyebrow: "Future forward",
-    title: "Our Vision",
+    title: "OUR VISION",
     text: "To become one of Nigeria's most trusted cleaning and hygiene service companies.",
     image: "/images/service 3.png",
     alt: "Cleaning team standing in a prepared interior",
@@ -51,7 +51,7 @@ function TimelineCard({ item, isImage }) {
   return (
     <div
       className={[
-        "px-2 py-2 text-center lg:px-8",
+        "px-2 py-2 text-left lg:px-8",
         isLeft ? "lg:text-right" : "lg:text-left"
       ].join(" ")}
     >
@@ -64,7 +64,7 @@ function TimelineCard({ item, isImage }) {
       <p
         className={[
           "mt-5 text-base leading-8 text-[#5f767f]",
-          isLeft ? "mx-auto max-w-[38rem] lg:ml-auto lg:mr-0" : "mx-auto max-w-[32rem] lg:ml-0 lg:mr-auto"
+          isLeft ? "max-w-[38rem] lg:ml-auto lg:mr-0" : "max-w-[32rem] lg:ml-0 lg:mr-auto"
         ].join(" ")}
       >
         {item.text}

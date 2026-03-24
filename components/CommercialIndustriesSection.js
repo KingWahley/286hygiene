@@ -20,25 +20,36 @@ const industries = [
 
 export default function CommercialIndustriesSection() {
   return (
-    <section className="px-4 py-40 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="text-center text-3xl py-6 font-black text-[#17222b] ">
-          Commercial Cleaning Services for
-        </h2>
+    <section className="relative overflow-hidden px-4 py-22 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(97,210,233,0.12),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(214,245,222,0.5),_transparent_24%),linear-gradient(180deg,_#f8fcfc_0%,_#eef5f5_100%)]" />
 
-        <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-7">
+      <div className="relative mx-auto max-w-6xl">
+        <div className="mx-auto max-w-3xl text-left sm:text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#0b8768]">
+            Industries We Support
+          </p>
+          <h2 className="mt-4 text-4xl font-black leading-tight text-[#17222b] ">
+            Commercial cleaning services for modern business environments
+          </h2>
+        </div>
+
+        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
           {industries.map((industry) => {
             const Icon = industry.icon;
 
             return (
-              <div key={industry.title} className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-[#ddeceb] bg-[#f5fbfa] text-[#0b8768] shadow-[0_12px_24px_rgba(112,166,156,0.08)]">
+              <article
+                key={industry.title}
+                className="group rounded-[1.6rem] border border-white/75 bg-white/90 px-4 py-6 text-center shadow-[0_16px_34px_rgba(97,129,141,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(61,117,130,0.14)]"
+              >
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(180deg,_#edf8f5_0%,_#e0f2ec_100%)] text-[#0b8768] shadow-[0_12px_24px_rgba(11,135,104,0.12)] transition group-hover:bg-[#0b8768] group-hover:text-white">
                   <Icon className="h-6 w-6" strokeWidth={2.1} aria-hidden="true" />
                 </div>
-                <p className="mt-4 text-sm font-medium text-[#17222b]">
+                <p className="mt-5 text-sm font-bold uppercase tracking-[0.08em] text-[#17222b]">
                   {industry.title}
                 </p>
-              </div>
+                
+              </article>
             );
           })}
         </div>
