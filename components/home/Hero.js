@@ -37,16 +37,16 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="mt-10 flex justify-center sm:justify-start gap-4">
+          <div className="mt-10 grid grid-cols-3 gap-2 sm:gap-4">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-[18px] border border-white/75 bg-white/85 px-5 py-4 shadow-[0_16px_40px_rgba(44,146,178,0.12)]"
+                className="min-w-0 rounded-[18px] border border-white/75 bg-white/85 px-3 py-3 text-left shadow-[0_16px_40px_rgba(44,146,178,0.12)] sm:px-5 sm:py-4"
               >
-                <div className="text-xl sm:text-2xl font-extrabold text-[#22a9cb]">
+                <div className="text-lg font-extrabold text-[#22a9cb] sm:text-2xl">
                   {stat.value}
                 </div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-[#7d949b]">
+                <div className="mt-1 text-[10px] font-medium uppercase leading-4 tracking-[0.08em] text-[#7d949b] sm:text-xs sm:tracking-[0.12em]">
                   {stat.label}
                 </div>
               </div>
