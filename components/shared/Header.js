@@ -6,16 +6,32 @@ import { primaryNavItems, siteConfig } from "../../lib/siteData";
 import StaggeredMenu from "./StaggeredMenu";
 
 export default function Header() {
-  const mobileMenuItems = primaryNavItems.map((item) => ({
-    label: item.label,
-    ariaLabel: `Go to ${item.label}`,
-    link: item.href,
-    children: item.children?.map((child) => ({
-      label: child.label,
-      ariaLabel: `Go to ${child.label}`,
-      link: child.href
-    }))
-  }));
+  const mobileMenuItems = primaryNavItems.flatMap((item) => {
+    if (!item.children) {
+      return [
+        {
+          label: item.label,
+          ariaLabel: `Go to ${item.label}`,
+          link: item.href
+        }
+      ];
+    }
+
+    const [parentLink, ...childLinks] = item.children;
+
+    return [
+      {
+        label: parentLink?.label || item.label,
+        ariaLabel: `Go to ${parentLink?.label || item.label}`,
+        link: parentLink?.href || item.href,
+        children: childLinks.map((child) => ({
+          label: child.label,
+          ariaLabel: `Go to ${child.label}`,
+          link: child.href
+        }))
+      }
+    ];
+  });
 
   const mobileQuickLinks = [
     {

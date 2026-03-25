@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import React, {
   useCallback,
   useEffect,
@@ -44,26 +44,6 @@ function MenuItemLink({ item, className, onClick, children }) {
   );
 }
 
-function ChildMenuList({ items = [], onItemClick }) {
-  if (!items.length) return null;
-
-  return (
-    <ul className="sm-child-list m-0 mt-4 grid list-none gap-2 p-0" role="list">
-      {items.map((item, index) => (
-        <li key={`${item.label}-${index}`} className="sm-child-item">
-          <MenuItemLink
-            item={item}
-            onClick={onItemClick}
-            className="sm-child-link inline-block text-[0.98rem] font-normal tracking-[0.01em] text-[#5f737a] no-underline transition-colors duration-150 ease-linear"
-          >
-            {item.label}
-          </MenuItemLink>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 export default function StaggeredMenu({
   position = "right",
   colors = ["#d9f1eb", "#0b8768"],
@@ -85,6 +65,7 @@ export default function StaggeredMenu({
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState({});
 
   const openRef = useRef(false);
   const panelRef = useRef(null);
@@ -325,6 +306,7 @@ export default function StaggeredMenu({
 
     openRef.current = false;
     setOpen(false);
+    setExpandedItems({});
     onMenuClose?.();
     playClose();
     animateColor(false);
@@ -397,6 +379,13 @@ export default function StaggeredMenu({
       document.removeEventListener("keydown", handleEscape);
     };
   }, [closeMenu, open]);
+
+  const toggleExpandedItem = useCallback((key) => {
+    setExpandedItems((current) => ({
+      ...current,
+      [key]: !current[key]
+    }));
+  }, []);
 
   return (
     <div
@@ -476,21 +465,53 @@ export default function StaggeredMenu({
               {items.length ? (
                 items.map((item, index) => (
                   <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={`${item.label}-${index}`}>
-                    <div className="sm-panel-itemGroup">
+                    <div className="sm-panel-itemRow flex items-center gap-3">
                       <MenuItemLink
                         item={item}
                         onClick={closeMenu}
-                        className="sm-panel-item relative inline-block pr-[1.5em] text-[clamp(2rem,8vw,4rem)] font-semibold uppercase leading-none tracking-[-0.04em] text-[#17222b] no-underline transition-colors duration-150 ease-linear"
+                        className="sm-panel-item relative inline-block flex-1 text-4xl font-semibold uppercase leading-none tracking-[-0.04em] text-[#17222b] no-underline transition-colors duration-150 ease-linear py-2"
                       >
                         <span className="sm-panel-itemLabel inline-block">{item.label}</span>
                       </MenuItemLink>
-                      <ChildMenuList items={item.children} onItemClick={closeMenu} />
+
+                      {item.children?.length ? (
+                        <button
+                          type="button"
+                          className="sm-panel-toggle inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#dbeceb] text-[#17222b] transition-colors duration-150 ease-linear hover:text-[var(--sm-accent)]"
+                          aria-label={`${expandedItems[`${item.label}-${index}`] ? "Hide" : "Show"} ${item.label} sub-services`}
+                          aria-expanded={expandedItems[`${item.label}-${index}`] || false}
+                          onClick={() => toggleExpandedItem(`${item.label}-${index}`)}
+                        >
+                          <ChevronDown
+                            className={`h-5 w-5 transition-transform duration-200 ${
+                              expandedItems[`${item.label}-${index}`] ? "rotate-180" : ""
+                            }`}
+                            aria-hidden="true"
+                          />
+                        </button>
+                      ) : null}
                     </div>
+
+                    {item.children?.length && expandedItems[`${item.label}-${index}`] ? (
+                      <ul className="sm-submenu m-0 list-none pl-0 pt-2" role="list">
+                        {item.children.map((child, childIndex) => (
+                          <li key={`${child.label}-${childIndex}`} className="sm-submenu-item">
+                            <MenuItemLink
+                              item={child}
+                              onClick={closeMenu}
+                              className="sm-submenu-link inline-block py-2 text-base font-medium text-[#4b6670] no-underline transition-colors duration-150 ease-linear"
+                            >
+                              {child.label}
+                            </MenuItemLink>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </li>
                 ))
               ) : (
                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" aria-hidden="true">
-                  <span className="sm-panel-item relative inline-block pr-[1.5em] text-[clamp(2rem,8vw,4rem)] font-semibold uppercase leading-none tracking-[-0.04em] text-[#17222b]">
+                  <span className="sm-panel-item relative inline-block pr-[1.5em] text-[clamp(1.6rem,6vw,3.2rem)] font-semibold uppercase leading-none tracking-[-0.04em] text-[#17222b]">
                     <span className="sm-panel-itemLabel inline-block">No items</span>
                   </span>
                 </li>
@@ -549,6 +570,8 @@ export default function StaggeredMenu({
 
         .sm-scope .sm-toggle:focus-visible,
         .sm-scope .sm-panel-item:focus-visible,
+        .sm-scope .sm-panel-toggle:focus-visible,
+        .sm-scope .sm-submenu-link:focus-visible,
         .sm-scope .sm-socials-link:focus-visible {
           outline: 2px solid var(--sm-accent);
           outline-offset: 4px;
@@ -560,7 +583,8 @@ export default function StaggeredMenu({
         }
 
         .sm-scope .sm-panel-item:hover,
-        .sm-scope .sm-child-link:hover,
+        .sm-scope .sm-panel-toggle:hover,
+        .sm-scope .sm-submenu-link:hover,
         .sm-scope .sm-socials-link:hover {
           color: var(--sm-accent);
         }
@@ -580,6 +604,16 @@ export default function StaggeredMenu({
           letter-spacing: 0.08em;
           color: var(--sm-accent);
           opacity: var(--sm-num-opacity, 0);
+        }
+
+        .sm-scope .sm-submenu {
+          display: grid;
+          gap: 0.15rem;
+          padding-left: 0.35rem;
+        }
+
+        .sm-scope .sm-submenu-link {
+          padding-left: 0.8rem;
         }
 
         .sm-scope .sm-socials-list:hover .sm-socials-link:not(:hover),
