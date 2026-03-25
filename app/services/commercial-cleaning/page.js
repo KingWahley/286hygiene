@@ -21,6 +21,11 @@ export default function CommercialCleaningPage() {
       <main className="overflow-hidden">
         <PageHero
           title="A clean workspace improves productivity, and the professional image of your business"
+          animatedTitlePrefix="Cleaner"
+          animatedTitleWords={["offices", "stores", "workplaces", "facilities"]}
+          animatedTitleSuffix="build stronger business impressions."
+          animatedTitleInterval={2500}
+          animatedTitleClassName="text-[#d9f7ff]"
           backgroundImage="/images/heroimg.png"
           alt="Commercial cleaning team at work"
           overlayClassName="bg-[linear-gradient(90deg,_rgba(37,168,201,0.78)_0%,_rgba(37,168,201,0.64)_45%,_rgba(37,168,201,0.34)_100%)]"

@@ -20,6 +20,11 @@ export default function ResidentialCleaningPage() {
       <main className="overflow-hidden">
         <PageHero
           title="Our residential cleaning services help homeowners maintain clean, hygienic living environments."
+          animatedTitlePrefix="Residential care for"
+          animatedTitleWords={["homes", "apartments", "families", "living spaces"]}
+          animatedTitleSuffix="that feel refreshed."
+          animatedTitleInterval={2500}
+          animatedTitleClassName="text-[#d9f7ff]"
           backgroundImage="/images/heroimg.png"
           alt="Residential cleaning team at work"
           overlayClassName="bg-[linear-gradient(90deg,_rgba(37,168,201,0.78)_0%,_rgba(37,168,201,0.64)_45%,_rgba(37,168,201,0.34)_100%)]"

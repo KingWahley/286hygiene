@@ -20,6 +20,11 @@ export default function PostConstructionCleaningPage() {
       <main className="overflow-hidden">
         <PageHero
           title="Our team provides professional post-construction cleaning to prepare the space for use."
+          animatedTitlePrefix="Post-construction cleanup for"
+          animatedTitleWords={["homes", "offices", "sites", "interiors"]}
+          animatedTitleSuffix="ready for handover."
+          animatedTitleInterval={2500}
+          animatedTitleClassName="text-[#d9f7ff]"
           backgroundImage="/images/heroimg.png"
           alt="Post construction cleaning team at work"
           overlayClassName="bg-[linear-gradient(90deg,_rgba(37,168,201,0.78)_0%,_rgba(37,168,201,0.64)_45%,_rgba(37,168,201,0.34)_100%)]"

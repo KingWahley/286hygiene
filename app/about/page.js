@@ -20,6 +20,11 @@ export default function AboutPage() {
       <main className="overflow-hidden">
         <PageHero
           title="To deliver professional hygiene solutions that make every space sparkle."
+          animatedTitlePrefix="To deliver"
+          animatedTitleWords={["cleaner", "healthier", "safer", "brighter"]}
+          animatedTitleSuffix="spaces every day."
+          animatedTitleInterval={2600}
+          animatedTitleClassName="text-[#d8eef6]"
           backgroundImage="/images/heroimg.png"
           alt="286 Hygiene cleaning team in action"
           overlayClassName="bg-[linear-gradient(90deg,_rgba(8,58,53,0.64)_0%,_rgba(8,58,53,0.34)_42%,_rgba(8,58,53,0.1)_100%)]"

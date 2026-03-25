@@ -20,6 +20,11 @@ export default function PressureWashingPage() {
       <main className="overflow-hidden">
         <PageHero
           title="Pressure Washing Services"
+          animatedTitlePrefix=""
+          animatedTitleWords={["Pressure", "Exterior", "Surface", "Driveway"]}
+          animatedTitleSuffix="Washing Services"
+          animatedTitleInterval={2500}
+          animatedTitleClassName="text-[#d9f7ff]"
           backgroundImage="/images/team.png"
           alt="286 Hygiene pressure washing team"
           overlayClassName="bg-[linear-gradient(90deg,_rgba(37,168,201,0.76)_0%,_rgba(37,168,201,0.62)_48%,_rgba(37,168,201,0.28)_100%)]"

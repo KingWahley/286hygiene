@@ -1,7 +1,13 @@
 import Image from "next/image";
+import AnimatedTextCycle from "../ui/animated-text-cycle";
 
 export default function PageHero({
   title,
+  animatedTitlePrefix,
+  animatedTitleWords,
+  animatedTitleSuffix,
+  animatedTitleInterval = 3000,
+  animatedTitleClassName = "",
   backgroundImage,
   overlayClassName,
   alt = "286 Hygiene page hero",
@@ -11,6 +17,8 @@ export default function PageHero({
   titleClassName = "text-3xl font-black uppercase leading-[1.15] text-white",
   extraText,
 }) {
+  const hasAnimatedTitle = Array.isArray(animatedTitleWords) && animatedTitleWords.length > 0;
+
   return (
     <section className={`relative ${sectionClassName} hidden sm:block`}>
       <div className="pointer-events-none absolute left-8 top-6 h-28 w-28 rounded-full bg-[#cbeff6]/60 blur-3xl" />
@@ -36,7 +44,21 @@ export default function PageHero({
               <div className="inline-flex rounded-full border border-white/24 bg-white/14 px-3 py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-white/90">
                 286 Hygiene
               </div>
-              <h1 className={`mt-4 ${titleClassName}`}>{title}</h1>
+              <h1 className={`mt-4 ${titleClassName}`}>
+                {hasAnimatedTitle ? (
+                  <>
+                    {animatedTitlePrefix ? <span>{animatedTitlePrefix} </span> : null}
+                    <AnimatedTextCycle
+                      words={animatedTitleWords}
+                      interval={animatedTitleInterval}
+                      className={animatedTitleClassName}
+                    />
+                    {animatedTitleSuffix ? <span> {animatedTitleSuffix}</span> : null}
+                  </>
+                ) : (
+                  title
+                )}
+              </h1>
               <p className="text-white mt-2">{extraText}</p>
             </div>
           </div>

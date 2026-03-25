@@ -19,6 +19,10 @@ export default function BlogPage() {
       <main className="overflow-hidden">
         <PageHero
           title="The 286 Blog"
+          animatedTitlePrefix="The 286"
+          animatedTitleWords={["Blog", "Insights", "Guides", "Tips"]}
+          animatedTitleInterval={2800}
+          animatedTitleClassName="text-white"
           backgroundImage="/images/heroimg.png"
           alt="Minimal interior representing the 286 blog"
           sectionClassName="px-4 pb-10 pt-4 sm:px-6 lg:px-8"

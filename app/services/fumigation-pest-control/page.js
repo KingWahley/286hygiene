@@ -20,6 +20,11 @@ export default function FumigationPestControlPage() {
       <main className="overflow-hidden">
         <PageHero
           title="Fumigation & Pest Control"
+          animatedTitlePrefix=""
+          animatedTitleWords={["Fumigation", "Pest Control", "Rodent Control", "Insect Protection"]}
+          animatedTitleSuffix=""
+          animatedTitleInterval={2600}
+          animatedTitleClassName="text-[#d9f7ff]"
           backgroundImage="/images/heroimg.png"
           alt="Fumigation and pest control team at work"
           overlayClassName="bg-[linear-gradient(90deg,_rgba(37,168,201,0.78)_0%,_rgba(37,168,201,0.64)_45%,_rgba(37,168,201,0.34)_100%)]"

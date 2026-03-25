@@ -5,6 +5,7 @@ import {
   Trash2,
   UsersRound
 } from "lucide-react";
+import { getContactBookingHref } from "../../../lib/contactBooking";
 
 const serviceItems = [
   {
@@ -88,9 +89,12 @@ export default function CommercialIncludesSection() {
 
                 <div className="relative mt-6 h-px w-full bg-[#e3eded]" />
 
-                <p className="relative mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#0b8768]">
+                <a
+                  href={getContactBookingHref(item.title)}
+                  className="relative mt-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-[#0b8768] transition hover:text-[#2DA6C8]"
+                >
                   Book Service
-                </p>
+                </a>
               </article>
             );
           })}

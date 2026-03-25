@@ -12,13 +12,22 @@ export const metadata = getPageMetadata({
   path: "/contact"
 });
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }) {
+  const resolvedSearchParams = await searchParams;
+  const requestedService = resolvedSearchParams?.service ?? "";
+  const requestedMessage = resolvedSearchParams?.message ?? "";
+
   return (
     <>
       <Header />
       <main className="overflow-hidden">
         <PageHero
           title="connect with us"
+          animatedTitlePrefix="Connect for"
+          animatedTitleWords={["bookings", "estimates", "support", "consultations"]}
+          animatedTitleSuffix=""
+          animatedTitleInterval={2500}
+          animatedTitleClassName="text-[#d9f7ff]"
           extraText="Experience clinical excellence. Reach out to our 
           team to design a bespoke sanitation protocol for your space."
           backgroundImage="/images/heroimg.png"
@@ -28,7 +37,10 @@ export default function ContactPage() {
           contentClassName="absolute inset-y-0 left-0 flex max-w-[48rem] items-center px-6 sm:px-10"
           titleClassName="text-3xl font-black uppercase leading-[1.15] text-white"
         />
-        <ContactPageSection />
+        <ContactPageSection
+          requestedService={requestedService}
+          requestedMessage={requestedMessage}
+        />
         <CallToAction />
       </main>
       <Footer />

@@ -1,4 +1,8 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { getBookingMessage } from "../../lib/contactBooking";
 import { siteConfig } from "../../lib/siteData";
 
 const contactItems = [
@@ -30,10 +34,49 @@ const serviceOptions = [
   "Residential Cleaning",
   "Commercial Cleaning",
   "Fumigation & Pest Control",
-  "Rug & Carpet Cleaning"
+  "Rug & Carpet Cleaning",
+  "Mattress Cleaning",
+  "Pressure Washing",
+  "Upholstery Cleaning"
 ];
 
-export default function ContactPageSection() {
+export default function ContactPageSection({
+  requestedService = "",
+  requestedMessage = ""
+}) {
+  const formSectionRef = useRef(null);
+  const normalizedServiceOptions = useMemo(() => {
+    if (!requestedService || serviceOptions.includes(requestedService)) {
+      return serviceOptions;
+    }
+
+    return [requestedService, ...serviceOptions];
+  }, [requestedService]);
+
+  const [selectedService, setSelectedService] = useState(
+    requestedService || serviceOptions[0]
+  );
+  const [message, setMessage] = useState(
+    requestedMessage || (requestedService ? getBookingMessage(requestedService) : "")
+  );
+
+  useEffect(() => {
+    setSelectedService(requestedService || serviceOptions[0]);
+    setMessage(
+      requestedMessage ||
+        (requestedService ? getBookingMessage(requestedService) : "")
+    );
+  }, [requestedMessage, requestedService]);
+
+  useEffect(() => {
+    if (requestedService || requestedMessage) {
+      formSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }, [requestedMessage, requestedService]);
+
   return (
     <>
       {/* <section className="relative overflow-hidden px-4 pb-12 pt-0 sm:px-6 lg:px-8">
@@ -119,7 +162,11 @@ export default function ContactPageSection() {
             </article>
           </div>
 
-          <article className="rounded-[1.8rem] bg-white px-6 py-8 shadow-[0_28px_70px_rgba(73,121,135,0.12)] sm:px-8 sm:py-10">
+          <article
+            id="contact-form"
+            ref={formSectionRef}
+            className="rounded-[1.8rem] bg-white px-6 py-8 shadow-[0_28px_70px_rgba(73,121,135,0.12)] sm:px-8 sm:py-10"
+          >
             <form className="space-y-8">
               <div className="grid gap-8 md:grid-cols-2">
                 <label className="block">
@@ -171,8 +218,12 @@ export default function ContactPageSection() {
                 <span className="text-[0.78rem] font-extrabold uppercase tracking-[0.22em] text-[#5e9a87]">
                   Service Required
                 </span>
-                <select className="mt-4 w-full border-0 border-b border-[#dce7e5] bg-transparent px-0 pb-3 text-lg text-[#17233b] focus:border-[#0b8768] focus:outline-none">
-                  {serviceOptions.map((option) => (
+                <select
+                  value={selectedService}
+                  onChange={(event) => setSelectedService(event.target.value)}
+                  className="mt-4 w-full border-0 border-b border-[#dce7e5] bg-transparent px-0 pb-3 text-lg text-[#17233b] focus:border-[#0b8768] focus:outline-none"
+                >
+                  {normalizedServiceOptions.map((option) => (
                     <option key={option}>{option}</option>
                   ))}
                 </select>
@@ -183,6 +234,8 @@ export default function ContactPageSection() {
                   Your Message
                 </span>
                 <textarea
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
                   rows={5}
                   placeholder="Describe your spatial requirements..."
                   className="mt-4 w-full resize-none border-0 border-b border-[#dce7e5] bg-transparent px-0 pb-3 text-lg text-[#17233b] placeholder:text-[#c8d4dc] focus:border-[#0b8768] focus:outline-none"

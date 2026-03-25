@@ -7,6 +7,7 @@ import {
   Layers3,
   LogOut
 } from "lucide-react";
+import { getContactBookingHref } from "../../../lib/contactBooking";
 
 const serviceItems = [
   {
@@ -100,9 +101,12 @@ export default function ResidentialIncludesSection() {
 
                 <div className="relative mt-6 h-px w-full bg-[#e3eded]" />
 
-                <p className="relative mt-4 text-xs font-bold uppercase tracking-[0.2em] text-[#0b8768] cursor-pointer hover:text-[#2DA6C8] ">
+                <a
+                  href={getContactBookingHref(item.title)}
+                  className="relative mt-4 inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#0b8768] transition hover:text-[#2DA6C8]"
+                >
                   book service
-                </p>
+                </a>
               </article>
             );
           })}

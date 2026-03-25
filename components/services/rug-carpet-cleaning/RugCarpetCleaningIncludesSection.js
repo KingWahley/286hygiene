@@ -49,7 +49,7 @@ export default function RugCarpetCleaningIncludesSection() {
     <>
       <section className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="max-w-5xl text-xl italic leading-9 text-[#3f4c53] sm:text-[1.7rem] sm:leading-[1.55]">
+          <p className="max-w-5xl text-xl italic leading-9 text-[#3f4c53] sm:text-[1.7rem]  sm:leading-[1.55]">
             “Rugs and carpets trap dust, dirt, allergens, and bacteria that can
             affect the cleanliness of your space. At 286 Hygiene, we provide
             professional rug and carpet cleaning services to restore freshness
