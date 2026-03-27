@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../lib/animations";
+
 const steps = [
   {
     number: "01",
@@ -23,7 +28,13 @@ const steps = [
 
 export default function HowServicesWork() {
   return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="px-4 py-10 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-6xl rounded-[2.5rem] px-6 py-16 sm:px-10 lg:px-12">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#0E6A4B]">
@@ -38,27 +49,40 @@ export default function HowServicesWork() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-4">
+        <motion.div variants={staggerContainer} className="mt-14 grid gap-8 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <div key={step.number} className="relative text-center">
+            <motion.div variants={fadeInUp} key={step.number} className="relative text-center">
               {index < steps.length - 1 ? (
-                <div className="absolute left-1/2 top-14 hidden h-px w-full -translate-y-1/2 border-t border-dashed border-[#0E6A4B] lg:block" />
+                <div className="absolute left-1/2 top-14 hidden h-px w-full -translate-y-1/2 overflow-hidden lg:block">
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 1, delay: 0.3 + index * 0.2, ease: "easeInOut" }}
+                    className="h-full w-full origin-left border-t border-dashed border-[#0E6A4B]"
+                  />
+                </div>
               ) : null}
-              <div className="relative z-10 mx-auto flex h-28 w-28 items-center justify-center rounded-[2rem] bg-[rgba(226,242,237,0.95)] p-3 shadow-[0_18px_40px_rgba(163,211,196,0.42)]">
+              <motion.div 
+                whileHover={{ scale: 1.05, rotate: -5 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative z-10 mx-auto flex h-28 w-28 cursor-default items-center justify-center rounded-[2rem] bg-[rgba(226,242,237,0.95)] p-3 shadow-[0_18px_40px_rgba(163,211,196,0.42)]"
+              >
                 <div className="flex h-full w-full items-center justify-center rounded-[1.65rem] bg-white text-[2rem] font-black leading-none text-[#0E7A58]">
                   {step.number}
                 </div>
-              </div>
+              </motion.div>
               <h3 className="mt-7 text-lg font-extrabold uppercase text-[#17222b]">
                 {step.title}
               </h3>
               <p className="mt-3 text-sm leading-6 text-[#728891]">
                 {step.text}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

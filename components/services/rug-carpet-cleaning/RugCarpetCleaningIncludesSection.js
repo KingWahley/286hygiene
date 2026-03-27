@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Droplets,
   Leaf,
@@ -5,6 +7,8 @@ import {
   Wind,
   Worm
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const serviceItems = [
   {
@@ -47,7 +51,13 @@ const serviceItems = [
 export default function RugCarpetCleaningIncludesSection() {
   return (
     <>
-      <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="px-4 py-10 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
           <p className="max-w-5xl text-xl italic leading-9 text-[#3f4c53] sm:text-[1.7rem]  sm:leading-[1.55]">
             “Rugs and carpets trap dust, dirt, allergens, and bacteria that can
@@ -57,9 +67,15 @@ export default function RugCarpetCleaningIncludesSection() {
             while preserving the quality of your carpets and rugs.”
           </p>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="bg-[#f3f5f5] px-4 py-18 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="bg-[#f3f5f5] px-4 py-18 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-black text-[#253038] sm:text-5xl">
@@ -68,12 +84,13 @@ export default function RugCarpetCleaningIncludesSection() {
             <div className="mt-6 h-1 w-24 rounded-full bg-[#0b8768]" />
           </div>
 
-          <div className="mt-14 space-y-8">
+          <motion.div variants={staggerContainer} className="mt-14 space-y-8">
             {serviceItems.map((item) => {
               const Icon = item.icon;
 
               return (
-                <article
+                <motion.article
+                  variants={fadeInUp}
                   key={item.title}
                   className="grid gap-6 md:grid-cols-[10rem_1fr] md:items-center lg:grid-cols-[11rem_1fr]"
                 >
@@ -96,12 +113,12 @@ export default function RugCarpetCleaningIncludesSection() {
                       {item.text}
                     </p>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

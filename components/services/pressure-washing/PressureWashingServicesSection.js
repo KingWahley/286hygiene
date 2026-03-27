@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { BriefcaseBusiness, Building2, House } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const serviceItems = [
   {
@@ -38,7 +42,13 @@ const serviceItems = [
 export default function PressureWashingServicesSection() {
   return (
     <>
-      <section className="relative overflow-hidden px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="relative overflow-hidden px-4 sm:px-6 lg:px-8"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(97,210,233,0.1),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(214,245,222,0.52),_transparent_22%),linear-gradient(180deg,_#f7fbfb_0%,_#eef5f5_100%)]" />
 
         <div className="relative mx-auto grid max-w-6xl  py-20 lg:grid-cols-[1.08fr_0.92fr]">
@@ -94,9 +104,15 @@ export default function PressureWashingServicesSection() {
             </div>
           </article>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="px-4 py-10 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="px-4 py-10 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#0b8768]">
@@ -107,10 +123,11 @@ export default function PressureWashingServicesSection() {
             </h2>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:auto-rows-[15rem] lg:grid-cols-4">
+          <motion.div variants={staggerContainer} className="mt-6 grid gap-3 sm:grid-cols-2 lg:auto-rows-[15rem] lg:grid-cols-4">
             {serviceItems.map((item) => {
               return (
-                <article
+                <motion.article
+                  variants={fadeInUp}
                   key={item.title}
                   className={`group relative overflow-hidden  border border-white/50 shadow-[0_20px_40px_rgba(16,90,112,0.14)] ${item.className}`}
                 >
@@ -130,12 +147,12 @@ export default function PressureWashingServicesSection() {
                       </h3>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

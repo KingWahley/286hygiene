@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../lib/animations";
+
 const testimonials = [
   {
     name: "Olumide A.",
@@ -22,15 +27,22 @@ function Stars() {
 
 export default function Testimonials() {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center text-4xl font-extrabold text-[#17222b] sm:text-5xl">
           WHAT OUR CLIENTS SAY
         </h2>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <motion.div variants={staggerContainer} className="mt-12 grid gap-6 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <article
+            <motion.article
+              variants={fadeInUp}
               key={testimonial.name}
               className="rounded-[1.7rem] bg-white/88 p-6 shadow-[0_18px_45px_rgba(48,112,135,0.1)]"
             >
@@ -48,11 +60,11 @@ export default function Testimonials() {
                   <p className="text-sm text-[#7a9096]">{testimonial.role}</p>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

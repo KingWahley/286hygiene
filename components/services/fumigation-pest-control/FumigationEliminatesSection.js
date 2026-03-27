@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Bug,
   Building2,
@@ -5,6 +7,8 @@ import {
   ShieldAlert,
   Squircle
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const pestItems = [
   {
@@ -41,18 +45,25 @@ const pestItems = [
 
 export default function FumigationEliminatesSection() {
   return (
-    <section className="bg-[linear-gradient(180deg,#31a6c9_0%,#2fa9cf_100%)] px-4 py-20 text-white sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="bg-[linear-gradient(180deg,#31a6c9_0%,#2fa9cf_100%)] px-4 py-20 text-white sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center text-3xl font-black uppercase ">
           Our Fumigation Service Eliminates
         </h2>
 
-        <div className="mt-12 grid gap-px overflow-hidden  bg-white/15 md:grid-cols-2 xl:grid-cols-5">
+        <motion.div variants={staggerContainer} className="mt-12 grid gap-px overflow-hidden  bg-white/15 md:grid-cols-2 xl:grid-cols-5">
           {pestItems.map((item) => {
             const Icon = item.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={item.number}
                 className="relative bg-[#127a58]/95 px-6 pb-8 pt-7"
               >
@@ -68,11 +79,11 @@ export default function FumigationEliminatesSection() {
                 <p className="mt-4 text-sm leading-7 text-white/80">
                   {item.text}
                 </p>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

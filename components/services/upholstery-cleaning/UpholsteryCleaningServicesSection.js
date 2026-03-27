@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Armchair,
@@ -6,6 +8,8 @@ import {
   Sparkles,
   Wind
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const serviceItems = [
   {
@@ -50,7 +54,13 @@ const serviceItems = [
 export default function UpholsteryCleaningServicesSection() {
   return (
     <>
-      <section className="relative overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="relative overflow-hidden px-4 py-10 sm:px-6 lg:px-8"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,169,204,0.16),_transparent_26%),radial-gradient(circle_at_bottom_right,_rgba(11,135,104,0.16),_transparent_24%),linear-gradient(180deg,_#f8fcfc_0%,_#edf5f5_100%)]" />
 
         <div className="relative mx-auto grid max-w-6xl  lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
@@ -92,9 +102,15 @@ export default function UpholsteryCleaningServicesSection() {
             </div>
           </article>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="bg-[linear-gradient(180deg,_#35a8cb_0%,_#2f9dbf_55%,_#278eb1_100%)] px-4 py-16 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="bg-[linear-gradient(180deg,_#35a8cb_0%,_#2f9dbf_55%,_#278eb1_100%)] px-4 py-16 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-left sm:text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/78">
@@ -105,12 +121,13 @@ export default function UpholsteryCleaningServicesSection() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:auto-rows-[14rem] lg:grid-cols-6">
+          <motion.div variants={staggerContainer} className="mt-12 grid gap-3 sm:grid-cols-2 lg:auto-rows-[14rem] lg:grid-cols-6">
             {serviceItems.map((item) => {
               const Icon = item.icon;
 
               return (
-                <article
+                <motion.article
+                  variants={fadeInUp}
                   key={item.title}
                   className={`group relative overflow-hidden  border border-white/20 shadow-[0_22px_40px_rgba(13,75,96,0.18)] ${item.className}`}
                 >
@@ -131,12 +148,12 @@ export default function UpholsteryCleaningServicesSection() {
                       </h3>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

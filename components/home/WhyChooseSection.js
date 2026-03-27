@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeInUp, fadeOnScroll } from "../../lib/animations";
 import { CalendarDays, ShieldCheck, Sparkles, Wrench } from "lucide-react";
 
 const features = [
@@ -49,27 +53,36 @@ export default function WhyChooseSection() {
         className="absolute inset-x-0 bottom-0 top-10 bg-[linear-gradient(180deg,_#35a8ca_0%,_#2db2da_100%)] shadow-[inset_0_18px_30px_rgba(255,255,255,0.08)] [clip-path:none] lg:[clip-path:polygon(0_0,100%_9%,100%_100%,0_100%)]"
       />
       <div className="absolute inset-x-0 bottom-0 top-10 bg-[radial-gradient(circle_at_18%_46%,_rgba(255,255,255,0.14),_transparent_28%),radial-gradient(circle_at_68%_70%,_rgba(255,255,255,0.10),_transparent_24%),radial-gradient(circle_at_50%_100%,_rgba(255,255,255,0.08),_transparent_34%)]" />
-      <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.92fr] lg:items-center">
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.92fr] lg:items-center"
+      >
         <div>
           
-          <h2 className="mt-4 max-w-md text-4xl font-black uppercase leading-tight sm:text-5xl">
+          <motion.h2 variants={fadeInUp} className="mt-4 max-w-md text-4xl font-black uppercase leading-tight sm:text-5xl">
             Why choose 286 hygiene
-          </h2>
+          </motion.h2>
 
-          <div className="mt-10 space-y-6">
+          <motion.div variants={fadeInUp} className="mt-10 space-y-6">
             {features.map((feature) => (
-              <div key={feature.title} className="flex gap-4">
+              <motion.div variants={fadeInUp} key={feature.title} className="flex gap-4">
                 <FeatureIcon icon={feature.icon} />
                 <div>
                   <h3 className="text-lg font-semibold">{feature.title}</h3>
                   <p className="mt-1 max-w-md text-sm leading-6 text-white/80">{feature.text}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mx-auto w-full max-w-[27rem]">
+        <motion.div 
+          variants={fadeOnScroll}
+          className="mx-auto w-full max-w-[27rem]"
+        >
           <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,_rgba(243,241,209,0.98)_0%,_rgba(201,229,191,0.94)_100%)] p-5 shadow-[0_30px_65px_rgba(4,71,96,0.32)]">
             <div className="relative h-[25rem] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(180deg,_rgba(255,255,255,0.28)_0%,_rgba(127,197,172,0.2)_100%)]">
               <Image
@@ -81,8 +94,8 @@ export default function WhyChooseSection() {
               />
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

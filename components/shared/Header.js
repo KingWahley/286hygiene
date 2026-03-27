@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeInUp } from "../../lib/animations";
 import { usePathname } from "next/navigation";
 import { primaryNavItems, siteConfig } from "../../lib/siteData";
 import StaggeredMenu from "./StaggeredMenu";
@@ -58,7 +60,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky font-bold top-0 z-50 bg-white backdrop-blur">
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="sticky font-bold top-0 z-50 bg-white backdrop-blur"
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" scroll={false} className="flex items-center gap-3">
           <div className="flex h-16 w-16 items-center justify-center">
@@ -73,23 +80,29 @@ export default function Header() {
           </div>
         </Link>
 
-        <nav className="hidden uppercase items-center gap-8 text-sm font-medium text-[#607984] md:flex">
+        <motion.nav 
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="hidden uppercase items-center gap-8 text-sm font-medium text-[#607984] md:flex"
+        >
           {primaryNavItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              scroll={false}
-              aria-current={isActivePath(item.href) ? "page" : undefined}
-              className={`border-b-2 px-1 py-1 transition ${
-                isActivePath(item.href)
-                  ? "border-[#0b8768] text-[#0b8768]"
-                  : "border-transparent hover:border-[#9bd7c8] hover:text-[#0a8199]"
-              }`}
-            >
-              {item.label}
-            </Link>
+            <motion.div variants={fadeInUp} key={item.label}>
+              <Link
+                href={item.href}
+                scroll={false}
+                aria-current={isActivePath(item.href) ? "page" : undefined}
+                className={`border-b-2 px-1 py-1 transition ${
+                  isActivePath(item.href)
+                    ? "border-[#0b8768] text-[#0b8768]"
+                    : "border-transparent hover:border-[#9bd7c8] hover:text-[#0a8199]"
+                }`}
+              >
+                {item.label}
+              </Link>
+            </motion.div>
           ))}
-        </nav>
+        </motion.nav>
 
         <div className="flex items-center gap-3">
           <Link
@@ -118,6 +131,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

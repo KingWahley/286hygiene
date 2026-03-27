@@ -2,6 +2,8 @@
 
 import { ClipboardCheck, Search, ShieldCheck, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../lib/animations";
 
 const steps = [
   {
@@ -48,7 +50,13 @@ export default function CleaningProcessSection() {
   const Icon = step.icon;
 
   return (
-    <section className="bg-[#d8eef6] px-4 py-16 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="bg-[#d8eef6] px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-xl font-extrabold uppercase tracking-[0.28em] text-[#0b8768]">
@@ -56,12 +64,13 @@ export default function CleaningProcessSection() {
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-8 md:hidden">
+        <motion.div variants={staggerContainer} className="mt-12 grid gap-8 md:hidden">
           {steps.map((item) => {
             const MobileIcon = item.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={item.number}
                 className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_28px_70px_rgba(73,121,135,0.2)]"
               >
@@ -93,17 +102,18 @@ export default function CleaningProcessSection() {
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 hidden flex-wrap justify-center gap-3 md:flex">
+        <motion.div variants={staggerContainer} className="mt-12 hidden flex-wrap justify-center gap-3 md:flex">
           {steps.map((item, index) => {
             const isActive = index === activeStep;
 
             return (
-              <button
+              <motion.button
+                variants={fadeInUp}
                 key={item.number}
                 type="button"
                 onClick={() => setActiveStep(index)}
@@ -115,12 +125,12 @@ export default function CleaningProcessSection() {
                 ].join(" ")}
               >
                 {item.number}. {item.label}
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
-        <article className="mt-12 hidden overflow-hidden bg-white shadow-[0_28px_70px_rgba(73,121,135,0.2)] md:block">
+        <motion.article variants={fadeInUp} className="mt-12 hidden overflow-hidden bg-white shadow-[0_28px_70px_rgba(73,121,135,0.2)] md:block">
           <div className="grid lg:grid-cols-[1.2fr_0.88fr]">
             <div className="px-8 py-10 sm:px-10 sm:py-12 lg:px-10 lg:py-14">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#edf5f2] text-[#0b8768]">
@@ -148,8 +158,8 @@ export default function CleaningProcessSection() {
               />
             </div>
           </div>
-        </article>
+        </motion.article>
       </div>
-    </section>
+    </motion.section>
   );
 }

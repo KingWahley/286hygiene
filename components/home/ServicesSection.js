@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ServiceCard from "../services/shared/ServiceCard";
 import { services } from "../services/shared/servicesData";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../lib/animations";
 
 export default function ServicesSection() {
   const [startIndex, setStartIndex] = useState(0);
@@ -24,7 +26,11 @@ export default function ServicesSection() {
   }
 
   return (
-    <section
+    <motion.section
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
       id="services"
       className="relative  overflow-hidden px-4 py-18 sm:px-6 lg:px-8"
     >
@@ -60,21 +66,22 @@ export default function ServicesSection() {
           </button>
 
           <div className="overflow-hidden pt-4 pb-10 lg:pt-8">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1fr_0.9fr] lg:items-start">
+            <motion.div variants={staggerContainer} className="grid gap-8 lg:grid-cols-[0.9fr_1fr_0.9fr] lg:items-start">
               {visibleServices.map((service, index) => (
-                <ServiceCard
-                  key={`${service.title}-${startIndex}-${index}`}
-                  service={service}
-                  titleAs="h3"
-                  className={index === 1 ? "lg:-translate-y-3 lg:scale-[1.02]" : "lg:translate-y-6"}
-                  imageClassName={
-                    index === 1
-                      ? "h-[18rem] sm:h-[20rem] lg:h-[22rem]"
-                      : "h-[15rem] sm:h-[17rem] lg:h-[19rem]"
-                  }
-                />
+                <motion.div variants={fadeInUp} key={`${service.title}-${startIndex}-${index}`}>
+                  <ServiceCard
+                    service={service}
+                    titleAs="h3"
+                    className={index === 1 ? "lg:-translate-y-3 lg:scale-[1.02]" : "lg:translate-y-6"}
+                    imageClassName={
+                      index === 1
+                        ? "h-[18rem] sm:h-[20rem] lg:h-[22rem]"
+                        : "h-[15rem] sm:h-[17rem] lg:h-[19rem]"
+                    }
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -97,6 +104,6 @@ export default function ServicesSection() {
           </button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

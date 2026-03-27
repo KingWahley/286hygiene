@@ -1,0 +1,124 @@
+﻿
+> build
+> next build
+
+Γû▓ Next.js 16.2.1 (Turbopack)
+
+  Creating an optimized production build ...
+node.exe : 
+At line:1 char:1
++ & "C:\nvm4w\nodejs/
+node.exe" "C:\nvm4w\n
+odejs/node_modules/np
+m/bin/np ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (:String   
+ ) [], RemoteExce    
+ption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+> Build error 
+occurred
+Error: Turbopack 
+build failed with 1 
+errors:
+./components/services
+/shared/ServiceCard.j
+s:7:1
+Module not found: 
+Can't resolve '../../
+lib/animations'
+  [90m 5 |[0m 
+[36mimport[0m { 
+[33mArrowRight[0m 
+} [36mfrom[0m [32m
+"lucide-react"[0m;
+  [90m 6 |[0m 
+[36mimport[0m { 
+motion } 
+[36mfrom[0m [32m"f
+ramer-motion"[0m;
+[31m[1m>[0m [90m 
+7 |[0m 
+[36mimport[0m { 
+buttonTap } 
+[36mfrom[0m [32m".
+./../lib/animations"
+[0m;
+  [90m   |[0m [31m
+[1m^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m 
+[36mconst[0m 
+[33mMotionLink[0m 
+= motion.create([33m
+Link[0m);
+  [90m10 |[0m
+
+
+
+Import traces:
+  Server Component:
+    ./components/serv
+ices/shared/ServiceCa
+rd.js
+    ./components/serv
+ices/shared/ServicesG
+rid.js
+    ./app/services/pa
+ge.js
+
+  Client Component 
+Browser:
+    ./components/serv
+ices/shared/ServiceCa
+rd.js [Client 
+Component Browser]
+    ./components/home
+/ServicesSection.js 
+[Client Component 
+Browser]
+    ./components/home
+/ServicesSection.js 
+[Server Component]
+    ./app/page.js 
+[Server Component]
+
+  Client Component 
+SSR:
+    ./components/serv
+ices/shared/ServiceCa
+rd.js [Client 
+Component SSR]
+    ./components/home
+/ServicesSection.js 
+[Client Component 
+SSR]
+    ./components/home
+/ServicesSection.js 
+[Server Component]
+    ./app/page.js 
+[Server Component]
+
+https://nextjs.org/do
+cs/messages/module-no
+t-found
+
+
+    at <unknown> (./c
+omponents/services/sh
+ared/ServiceCard.js:7
+:1)
+    at <unknown> (htt
+ps://nextjs.org/docs/
+messages/module-not-f
+ound)

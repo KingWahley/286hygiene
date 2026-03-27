@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Bath,
   BedDouble,
@@ -8,6 +10,8 @@ import {
   LogOut
 } from "lucide-react";
 import { getContactBookingHref } from "../../../lib/contactBooking";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const serviceItems = [
   {
@@ -49,7 +53,13 @@ const serviceItems = [
 
 export default function ResidentialIncludesSection() {
   return (
-    <section className="relative overflow-hidden bg-[#f2f7f7] px-4 py-18 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="relative overflow-hidden bg-[#f2f7f7] px-4 py-18 sm:px-6 lg:px-8"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(97,210,233,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(214,245,222,0.55),transparent_22%),linear-gradient(180deg,#f6fbfb_0%,#edf4f4_100%)]" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -72,12 +82,13 @@ export default function ResidentialIncludesSection() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <motion.div variants={staggerContainer} className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {serviceItems.map((item) => {
             const Icon = item.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={item.title}
                 className="group relative overflow-hidden rounded-[1.7rem] border border-white/70 bg-white/92 px-6 py-6 shadow-[0_18px_36px_rgba(97,129,141,0.1)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(61,117,130,0.14)]"
               >
@@ -107,11 +118,11 @@ export default function ResidentialIncludesSection() {
                 >
                   book service
                 </a>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

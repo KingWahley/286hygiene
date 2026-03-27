@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Building2,
   Layers3,
@@ -6,6 +8,8 @@ import {
   UsersRound
 } from "lucide-react";
 import { getContactBookingHref } from "../../../lib/contactBooking";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const serviceItems = [
   {
@@ -38,7 +42,13 @@ const serviceItems = [
 
 export default function CommercialIncludesSection() {
   return (
-    <section className="relative overflow-hidden bg-[#f2f7f7] px-4 py-18 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="relative overflow-hidden bg-[#f2f7f7] px-4 py-18 sm:px-6 lg:px-8"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(97,210,233,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(214,245,222,0.52),transparent_24%),linear-gradient(180deg,#f7fbfb_0%,#edf5f5_100%)]" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -61,12 +71,13 @@ export default function CommercialIncludesSection() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        <motion.div variants={staggerContainer} className="mt-14 grid gap-5 lg:grid-cols-3">
           {serviceItems.map((item) => {
             const Icon = item.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={item.title}
                 className={[
                   "group relative overflow-hidden rounded-[1.7rem] border border-white/75 bg-white/92 px-6 py-6 shadow-[0_18px_36px_rgba(97,129,141,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(61,117,130,0.14)]",
@@ -95,11 +106,11 @@ export default function CommercialIncludesSection() {
                 >
                   Book Service
                 </a>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

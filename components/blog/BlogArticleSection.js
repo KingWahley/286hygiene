@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { Link2, MessageCircle, Share2 } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeOnScroll } from "../../lib/animations";
 
 const topics = [
   {
@@ -56,7 +58,13 @@ export default function BlogArticleSection() {
   const activeTopic = topics[activeTopicIndex];
 
   return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={fadeOnScroll}
+      className="px-4 py-10 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[12rem_minmax(0,1fr)]">
         <aside className="space-y-12">
           <div>
@@ -96,7 +104,15 @@ export default function BlogArticleSection() {
           
         </aside>
 
-        <article className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_10rem]">
+        <AnimatePresence mode="wait">
+          <motion.article 
+            key={activeTopic.title}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_10rem]"
+          >
           <div>
             <h1 className="max-w-3xl text-4xl font-black uppercase leading-[1.03] text-[#1e2428] sm:text-5xl">
               {activeTopic.title}
@@ -132,8 +148,9 @@ export default function BlogArticleSection() {
               {activeTopic.author}
             </p>
           </div>
-        </article>
+          </motion.article>
+        </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   );
 }

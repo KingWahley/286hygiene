@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   BadgeCheck,
@@ -6,6 +8,8 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const serviceItems = [
   {
@@ -38,7 +42,13 @@ const serviceItems = [
 export default function MattressCleaningServicesSection() {
   return (
     <>
-      <section className="relative overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="relative overflow-hidden px-4 py-10 sm:px-6 lg:px-8"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,169,204,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(214,245,222,0.42),transparent_22%),linear-gradient(180deg,#f8fcfc_0%,#eef5f5_100%)]" />
 
         <div className="relative mx-auto grid max-w-6xl  py-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-stretch">
@@ -96,9 +106,15 @@ export default function MattressCleaningServicesSection() {
             </div>
           </article>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="bg-[linear-gradient(180deg,#38a9cc_0%,#2f9fc3_55%,#248dae_100%)] px-4 py-16 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="bg-[linear-gradient(180deg,#38a9cc_0%,#2f9fc3_55%,#248dae_100%)] px-4 py-16 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/76">
@@ -109,12 +125,13 @@ export default function MattressCleaningServicesSection() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          <motion.div variants={staggerContainer} className="mt-12 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
             {serviceItems.map((item) => {
               const Icon = item.icon;
 
               return (
-                <article
+                <motion.article
+                  variants={fadeInUp}
                   key={item.title}
                   className="min-h-72 bg-white px-5 py-6 shadow-[0_18px_36px_rgba(16,90,112,0.12)]"
                 >
@@ -131,12 +148,12 @@ export default function MattressCleaningServicesSection() {
                   <p className="mt-4 text-sm leading-7 text-[#677c85]">
                     {item.text}
                   </p>
-                </article>
+                </motion.article>
               );
             })}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

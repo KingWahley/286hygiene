@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Building2,
   GraduationCap,
@@ -7,6 +9,8 @@ import {
   Store,
   UtensilsCrossed
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const industries = [
   { title: "Offices", icon: Building2 },
@@ -20,7 +24,13 @@ const industries = [
 
 export default function CommercialIndustriesSection() {
   return (
-    <section className="relative overflow-hidden px-4 py-22 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="relative overflow-hidden px-4 py-22 sm:px-6 lg:px-8"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(97,210,233,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(214,245,222,0.5),transparent_24%),linear-gradient(180deg,#f8fcfc_0%,#eef5f5_100%)]" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -33,12 +43,13 @@ export default function CommercialIndustriesSection() {
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+        <motion.div variants={staggerContainer} className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
           {industries.map((industry) => {
             const Icon = industry.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={industry.title}
                 className="group rounded-[1.6rem] border border-white/75 bg-white/90 px-4 py-6 text-center shadow-[0_16px_34px_rgba(97,129,141,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(61,117,130,0.14)]"
               >
@@ -49,11 +60,11 @@ export default function CommercialIndustriesSection() {
                   {industry.title}
                 </p>
                 
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

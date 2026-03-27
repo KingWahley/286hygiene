@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Mail, Phone } from "lucide-react";
 import { footerLinkGroups, siteConfig } from "../../lib/siteData";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeOnScroll } from "../../lib/animations";
 
 export default function Footer() {
   const getFooterIcon = (label) => {
@@ -25,8 +29,14 @@ export default function Footer() {
       id="contact"
       className="border-t border-[#dbeceb] px-4 py-12 sm:px-6 lg:px-8"
     >
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
-        <div>
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]"
+      >
+        <motion.div variants={fadeOnScroll}>
           <div className="flex h-16 w-16 items-center justify-center">
             <Image
               src="/images/logo.png"
@@ -41,10 +51,10 @@ export default function Footer() {
             We deliver safe, reliable, and efficient cleaning services for
             every kind of space across Lagos, Nigeria.
           </p>
-        </div>
+        </motion.div>
 
         {Object.entries(footerLinkGroups).map(([group, items]) => (
-          <div key={group}>
+          <motion.div variants={fadeOnScroll} key={group}>
             <h3 className="text-sm font-extrabold uppercase tracking-[0.2em] text-[#17222b]">
               {group}
             </h3>
@@ -62,9 +72,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <div className="mx-auto mt-12 max-w-6xl border-t border-[#dbeceb] pt-6 text-center text-sm text-[#8ba0a4]">
         {"\u00A9"} 2026 {siteConfig.name}. All rights reserved.

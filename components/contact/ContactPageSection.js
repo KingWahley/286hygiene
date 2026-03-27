@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { getBookingMessage } from "../../lib/contactBooking";
 import { siteConfig } from "../../lib/siteData";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../lib/animations";
 
 const contactItems = [
   {
@@ -115,15 +117,21 @@ export default function ContactPageSection({
         </div>
       </section> */}
 
-      <section className="px-4 py-8 sm:px-6 lg:px-8">
+      <motion.section 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeOnScroll}
+        className="px-4 py-8 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div className="space-y-10">
-            <div className="space-y-8">
+            <motion.div variants={staggerContainer} className="space-y-8">
               {contactItems.map((item) => {
                 const Icon = item.icon;
 
                 return (
-                  <a
+                  <motion.a variants={fadeInUp}
                     key={item.title}
                     href={item.href}
                     className="flex items-start gap-4"
@@ -144,12 +152,12 @@ export default function ContactPageSection({
                         </p>
                       ) : null}
                     </div>
-                  </a>
+                  </motion.a>
                 );
               })}
-            </div>
+            </motion.div>
 
-            <article className="overflow-hidden rounded-[1.35rem] bg-[#cfe2de] shadow-[0_22px_50px_rgba(65,122,128,0.18)]">
+            <motion.article variants={fadeInUp} className="overflow-hidden rounded-[1.35rem] bg-[#cfe2de] shadow-[0_22px_50px_rgba(65,122,128,0.18)]">
               <div className="flex min-h-64 items-center justify-center bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.42),transparent_14%),linear-gradient(180deg,rgba(255,255,255,0.2)_0%,rgba(166,195,191,0.36)_100%)]">
                 <MapPin
                   className="h-28 w-28 text-[#90a7a4]"
@@ -166,10 +174,10 @@ export default function ContactPageSection({
                   <ArrowUpRight className="h-4 w-4" strokeWidth={2.1} aria-hidden="true" />
                 </a>
               </div>
-            </article>
+            </motion.article>
           </div>
 
-          <article
+          <motion.article variants={fadeInUp}
             id="contact-form"
             ref={formSectionRef}
             className="rounded-[1.8rem] bg-white px-6 py-8 shadow-[0_28px_70px_rgba(73,121,135,0.12)] sm:px-8 sm:py-10"
@@ -257,9 +265,9 @@ export default function ContactPageSection({
                 <span aria-hidden="true">→</span>
               </button>
             </form>
-          </article>
+          </motion.article>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

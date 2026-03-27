@@ -1,9 +1,13 @@
+"use client";
+
 import {
   Paintbrush,
   Shovel,
   Sparkles,
   Wind
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../../lib/animations";
 
 const highlightItems = [
   {
@@ -34,7 +38,13 @@ const highlightItems = [
 
 export default function PostConstructionHighlightsSection() {
   return (
-    <section className="bg-[#f2f4f4] px-4 py-16 sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="bg-[#f2f4f4] px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto grid max-w-6xl gap-2 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div className="max-w-[28rem] pt-10">
           <h2 className="text-4xl p font-black uppercase leading-[1.05] text-[#17222b] ">
@@ -47,12 +57,13 @@ export default function PostConstructionHighlightsSection() {
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <motion.div variants={staggerContainer} className="grid gap-3 sm:grid-cols-2">
           {highlightItems.map((item) => {
             const Icon = item.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={item.title}
                 className={`${item.tone} min-h-[13rem] px-6 py-8 text-white shadow-[0_18px_36px_rgba(84,126,136,0.14)]`}
               >
@@ -65,11 +76,11 @@ export default function PostConstructionHighlightsSection() {
                 <p className="mt-5 max-w-[19rem] text-sm leading-7 text-white/82">
                   {item.text}
                 </p>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

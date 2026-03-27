@@ -1,3 +1,5 @@
+"use client";
+
 import {
   BadgeCheck,
   ShieldCheck,
@@ -5,6 +7,8 @@ import {
   Stethoscope,
   Users
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeOnScroll, staggerContainer, fadeInUp } from "../../lib/animations";
 
 const values = [
   {
@@ -41,18 +45,25 @@ const values = [
 
 export default function CoreValuesSection() {
   return (
-    <section className="mt-12 bg-[linear-gradient(180deg,#32a7ca_0%,#29add3_100%)] px-4 py-18 text-white sm:px-6 lg:px-8">
+    <motion.section 
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeOnScroll}
+      className="mt-12 bg-[linear-gradient(180deg,#32a7ca_0%,#29add3_100%)] px-4 py-18 text-white sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-6xl">
         <h2 className="text-center text-4xl font-black uppercase sm:text-5xl">
           Our Core Values
         </h2>
 
-        <div className="mt-12 grid gap-px overflow-hidden  bg-white/20 md:grid-cols-2 xl:grid-cols-5">
+        <motion.div variants={staggerContainer} className="mt-12 grid gap-px overflow-hidden  bg-white/20 md:grid-cols-2 xl:grid-cols-5">
           {values.map((value) => {
             const Icon = value.icon;
 
             return (
-              <article
+              <motion.article
+                variants={fadeInUp}
                 key={value.number}
                 className="relative bg-[#0f7b5c]/92 px-6 pb-7 pt-6"
               >
@@ -66,11 +77,11 @@ export default function CoreValuesSection() {
                 <p className="mt-3 text-sm leading-6 text-white/78">
                   {value.text}
                 </p>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

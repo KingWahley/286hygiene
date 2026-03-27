@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { Eye, Sparkles, Target } from "lucide-react";
+import { motion } from "framer-motion";
+import { slideInFromLeft, slideInFromRight } from "../../lib/animations";
 
 const timelineItems = [
   {
@@ -85,7 +89,11 @@ export default function AboutTimeline() {
             const textFirst = item.align === "left";
 
             return (
-              <div
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={item.align === "left" ? slideInFromLeft : slideInFromRight}
                 key={item.title}
                 className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_88px_minmax(0,1fr)] lg:items-center"
               >
@@ -104,7 +112,7 @@ export default function AboutTimeline() {
                 {index < timelineItems.length - 1 ? (
                   <div className="mx-auto h-10 w-px bg-[#0b8768] lg:hidden" />
                 ) : null}
-              </div>
+              </motion.div>
             );
           })}
         </div>

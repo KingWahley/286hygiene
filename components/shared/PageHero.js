@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import AnimatedTextCycle from "../ui/animated-text-cycle";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../../lib/animations";
 
 export default function PageHero({
   title,
@@ -40,7 +44,12 @@ export default function PageHero({
           <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,20,24,0)_0%,rgba(8,20,24,0.18)_100%)]" />
 
           <div className={contentClassName}>
-            <div className="max-w-2xl rounded-[1.8rem] border border-white/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] p-5 shadow-[0_20px_45px_rgba(8,35,44,0.16)] backdrop-blur-md sm:p-6">
+            <motion.div 
+              initial="hidden"
+              animate="show"
+              variants={fadeInUp}
+              className="max-w-2xl rounded-[1.8rem] border border-white/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.08)_100%)] p-5 shadow-[0_20px_45px_rgba(8,35,44,0.16)] backdrop-blur-md sm:p-6"
+            >
               <div className="inline-flex rounded-full border border-white/24 bg-white/14 px-3 py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-white/90">
                 286 Hygiene
               </div>
@@ -60,7 +69,7 @@ export default function PageHero({
                 )}
               </h1>
               <p className="text-white mt-2">{extraText}</p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
