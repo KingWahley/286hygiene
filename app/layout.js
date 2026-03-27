@@ -58,7 +58,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ScrollManager />
+        <Suspense fallback={null}>
+          <ScrollManager />
+        </Suspense>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
