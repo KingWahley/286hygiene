@@ -11,7 +11,7 @@ const steps = [
     label: "Inspection",
     title: "Inspection",
     text: "We assess the cleaning requirements. Every sanctuary is unique; our experts conduct a tactile and visual audit to identify sensitive surfaces and high-traffic focal points.",
-    image: "/images/process1.webp",
+    image: "/images/process01.webp",
     alt: "Inspection of cleaning surfaces before work begins",
     icon: Search,
   },
